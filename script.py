@@ -13,7 +13,7 @@ for line in file:
     outputList=[]
     intList = []
     for index, string in enumerate(lineToStringArray):
-        if index == 2:
+        if index == 3:
             if string == "Best":
                 outputList.append(0)
             elif string == "Vg":
@@ -48,20 +48,14 @@ for line in file:
                 intList.append(5)
             else:
                 print("Unidentified string!!! At index" + str(index) + ":" + string)
-    print(outputList)
-    print(intList)
     outputListOfLists.append(outputList)
     inputListOfLists.append(intList)
 
-print(outputListOfLists)
-print()
-print(inputListOfLists)
 file.close()
 
 trainingInput = torch.FloatTensor(inputListOfLists)
 trainingOutput = torch.FloatTensor(outputListOfLists)
 
-print(torch.__version__)
 file = open ("./test_data_set/data.txt", "r")
 
 outputListOfLists = []
@@ -74,7 +68,7 @@ for line in file:
     outputList=[]
     intList = []
     for index, string in enumerate(lineToStringArray):
-        if index == 2:
+        if index == 3:
             if string == "Best":
                 outputList.append(0)
             elif string == "Vg":
@@ -113,13 +107,9 @@ for line in file:
             else:
                 # print("Unidentified string!!! At index" + str(index) + ":" + string)
                 print()
-    print(outputList)
-    print(intList)
     outputListOfLists.append(outputList)
     inputListOfLists.append(intList)
 
-print(outputListOfLists)
-print()
 print(inputListOfLists)
 file.close()
 
