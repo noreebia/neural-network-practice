@@ -14,8 +14,3 @@ class LinearRegression(nn.Module):
 
     def forward(self,x):
         return self.linear(x)
-
-inputSize = 18
-outputSize = 4
-
-model = LinearRegression(inputSize, outputSize) # input and output size are 1

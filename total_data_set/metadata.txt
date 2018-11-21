@@ -1,5 +1,4 @@
 @ATTRIBUTE ge  {M,F} 
-
 @ATTRIBUTE tnp {Best,Vg,Good,Pass,Fail}
 @ATTRIBUTE twp {Best,Vg,Good,Pass,Fail}
 @ATTRIBUTE iap {Best,Vg,Good,Pass,Fail}
@@ -8,18 +7,12 @@
 @ATTRIBUTE ms  {Married,Unmarried}
 @ATTRIBUTE ls  {T,V}
 @ATTRIBUTE as  {Free,Paid}
-
-
 @ATTRIBUTE ss  {Govt,Private}
-
-
-
 @ATTRIBUTE fs  {Large,Average,Small} // 11
 @ATTRIBUTE nf  {Large,Average,Small} //16
 @ATTRIBUTE sh  {Good,Average,Poor} //17
 @ATTRIBUTE tt  {Large,Average,Small} // 20
 @ATTRIBUTE atd {Good,Average,Poor} //21
-
 @ATTRIBUTE cst {G,ST,SC,OBC,MOBC}
 @ATTRIBUTE fmi {Vh,High,Am,Medium,Low} 
 @ATTRIBUTE fq  {Il,Um,10,12,Degree,Pg}

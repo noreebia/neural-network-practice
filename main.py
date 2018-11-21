@@ -1,16 +1,18 @@
-from script import torchInput, torchOutput, testInput, testOutput
-from Model import LinearRegression
+from script import trainingInput, trainingOutput, testInput, testOutput
+from model import LinearRegression
 import torch
 
-print(torchInput)
-print(torchOutput)
+print(trainingInput)
+print(trainingOutput)
+
+print(trainingInput.size())
+print(trainingOutput.size())
 
 inputSize = 18
 outputSize = 1
 
-model = LinearRegression(inputSize, outputSize) # input and output size are 1
+model = LinearRegression(inputSize, outputSize)
 print(model)
-
 
 criterion = torch.nn.MSELoss(size_average = False) 
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.01) 
@@ -19,10 +21,10 @@ for epoch in range(500):
   
     # Forward pass: Compute predicted y by passing  
     # x to the model 
-    pred_y = model(torchInput) 
+    predictedOutput = model(trainingInput) 
   
     # Compute and print loss 
-    loss = criterion(pred_y, torchOutput) 
+    loss = criterion(predictedOutput, trainingOutput) 
   
     # Zero gradients, perform a backward pass,  
     # and update the weights. 

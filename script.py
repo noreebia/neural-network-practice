@@ -1,7 +1,7 @@
 import torch
 
 print(torch.__version__)
-file = open ("./test_data_set/data.txt", "r")
+file = open ("./training_data_set/data.txt", "r")
 
 outputListOfLists = []
 inputListOfLists = []
@@ -13,7 +13,7 @@ for line in file:
     outputList=[]
     intList = []
     for index, string in enumerate(lineToStringArray):
-        if index == 2 or index ==3 or index == 4 or index == 5:
+        if index == 2:
             if string == "Best":
                 outputList.append(0)
             elif string == "Vg":
@@ -58,11 +58,11 @@ print()
 print(inputListOfLists)
 file.close()
 
-torchInput = torch.FloatTensor(inputListOfLists)
-torchOutput = torch.FloatTensor(outputListOfLists)
+trainingInput = torch.FloatTensor(inputListOfLists)
+trainingOutput = torch.FloatTensor(outputListOfLists)
 
 print(torch.__version__)
-file = open ("./training_data_set/data.txt", "r")
+file = open ("./test_data_set/data.txt", "r")
 
 outputListOfLists = []
 inputListOfLists = []
@@ -74,7 +74,7 @@ for line in file:
     outputList=[]
     intList = []
     for index, string in enumerate(lineToStringArray):
-        if index == 2 or index ==3 or index == 4 or index == 5:
+        if index == 2:
             if string == "Best":
                 outputList.append(0)
             elif string == "Vg":
@@ -85,6 +85,8 @@ for line in file:
                 outputList.append(3)
             elif string == "Fail":
                 outputList.append(4)
+            else:
+                print("Unidentified input!! at" + index )
         elif index == 11 or index == 16 or index == 17 or index == 20 or index == 21:
             if string == "Large" or string == "Good" or string == "Good\n":
                 intList.append(0)
@@ -93,7 +95,8 @@ for line in file:
             elif string == "Small" or string == "Poor" or string == "Poor\n":
                 intList.append(2) 
             else:
-                print("Unidentified string!!! At index" + str(index) + ":" + string)
+                # print("Unidentified string!!! At index" + str(index) + ":" + string)
+                print()
         else:
             if string == "M" or string == "G" or string == "Y" or string == "Married" or string == "T" or string == "Free" or string == "Vh" or string == "Large" or string == "Il" or string == "Service" or string == "Govt" or string == "Eng":
                 intList.append(0)
@@ -108,7 +111,8 @@ for line in file:
             elif string == "Pg":
                 intList.append(5)
             else:
-                print("Unidentified string!!! At index" + str(index) + ":" + string)
+                # print("Unidentified string!!! At index" + str(index) + ":" + string)
+                print()
     print(outputList)
     print(intList)
     outputListOfLists.append(outputList)
