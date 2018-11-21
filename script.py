@@ -1,19 +1,29 @@
-import torch;
+import torch
 
-file = open ("data.txt", "r")
+print(torch.__version__)
+file = open ("./test_data_set/data.txt", "r")
 
-outputList = []
-intListOfLists = []
+outputListOfLists = []
+inputListOfLists = []
 for line in file:
     if line.startswith("@") or line.startswith("\n"):
         continue
     
     lineToStringArray = line.split(",")
-    print(lineToStringArray)
+    outputList=[]
     intList = []
     for index, string in enumerate(lineToStringArray):
         if index == 2 or index ==3 or index == 4 or index == 5:
-            continue
+            if string == "Best":
+                outputList.append(0)
+            elif string == "Vg":
+                outputList.append(1)
+            elif string == "Good":
+                outputList.append(2)
+            elif string == "Pass":
+                outputList.append(3)
+            elif string == "Fail":
+                outputList.append(4)
         elif index == 11 or index == 16 or index == 17 or index == 20 or index == 21:
             if string == "Large" or string == "Good" or string == "Good\n":
                 intList.append(0)
@@ -38,9 +48,15 @@ for line in file:
                 intList.append(5)
             else:
                 print("Unidentified string!!! At index" + str(index) + ":" + string)
+    print(outputList)
     print(intList)
-    print()
-    intListOfLists.append(intList)
+    outputListOfLists.append(outputList)
+    inputListOfLists.append(intList)
 
-print(intListOfLists)
+print(outputListOfLists)
+print()
+print(inputListOfLists)
 file.close()
+
+torchInput = torch.FloatTensor(inputListOfLists)
+torchOutput = torch.IntTensor(outputListOfLists)
