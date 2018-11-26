@@ -1,22 +1,21 @@
 from scipy.io import arff
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
+import numpy as np
 
 data = arff.loadarff('data.arff')
-df = pd.DataFrame(data[0])
+totalData = pd.DataFrame(data[0])
+espColumn = totalData['esp']
+x = totalData.drop(columns = "esp")
 
-espColumn = df['esp']
+oneHotEncodedX = pd.get_dummies(x)
+oneHotEncodedX = oneHotEncodedX.values
 
-df = df.drop(columns = "esp")
-
-#print(df)
-#print(espColumn)
-#print(pd.get_dummies(df))
-#print(df)
-
-oneHotEncodedX = pd.get_dummies(df)
-oneHotEncodedY = pd.get_dummies(espColumn)
+labelEncoder = LabelEncoder()
+labelEncodedY = labelEncoder.fit_transform(espColumn)
+labelEncodedY = labelEncodedY.reshape(labelEncodedY.shape[0], -1)
 
 print(oneHotEncodedX)
-print(oneHotEncodedY)
-
-print(espColumn)
+print(labelEncodedY)
+print("{} , {}".format(oneHotEncodedX.shape, labelEncodedY.shape))
