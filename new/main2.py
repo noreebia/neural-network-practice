@@ -3,30 +3,17 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
 import pandas as pd
 import numpy as np
-np.set_printoptions(threshold=np.inf)
+
+# purely one hot encoded
+
 data = arff.loadarff('data.arff')
 totalData = pd.DataFrame(data[0])
 espColumn = totalData['esp']
 x = totalData.drop(columns = "esp")
 
-# combination of one-hot-encoding and label-encoding
-
-labelEncoder = LabelEncoder()
-
-for column in x:
-    x[column] = x[column].str.decode("utf-8")
-    if column == "tnp" or column == "twp" or column == "iap" or column == "fmi" or column == "fs" or column == "fq" or column == "mq" or column == "nf" or column == "sh" or column == "ss" or column == "tt" or column == "atd":
-        x[column] = labelEncoder.fit_transform(x[column])
-
-print(x.to_string())
-
-columnsToEncode = ["ge", "cst", "arr", "ms", "ls", "as", "fo", "mo", "ss", "me"]
-oneHotEncodedX = pd.get_dummies(x, columns = columnsToEncode)
-
-print(oneHotEncodedX.to_string())
+oneHotEncodedX = pd.get_dummies(x)
 oneHotEncodedX = oneHotEncodedX.values
 
 labelEncoder = LabelEncoder()
@@ -40,15 +27,6 @@ xTrain, xTest, yTrain, yTest = train_test_split(oneHotEncodedX, labelEncodedY, t
 
 print("{} , {}".format(xTrain.shape, yTrain.shape))
 print("{} , {}".format(xTest.shape, yTest.shape))
-
-# training a DescisionTreeClassifier 
-from sklearn.tree import DecisionTreeClassifier 
-dtree_model = DecisionTreeClassifier(max_depth = 2).fit(xTrain, yTrain) 
-dtree_predictions = dtree_model.predict(xTest) 
-  
-# creating a confusion matrix 
-cm = confusion_matrix(yTest, dtree_predictions) 
-print(cm)
 
 ###
 
