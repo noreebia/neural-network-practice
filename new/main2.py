@@ -3,6 +3,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
 import pandas as pd
 import numpy as np
 
@@ -45,4 +47,16 @@ knn = KNeighborsClassifier(n_neighbors = 7).fit(xTrain, yTrain)
   
 # accuracy on X_test 
 accuracy = knn.score(xTest, yTest) 
+print(accuracy)
+
+###
+
+###
+clf = RandomForestClassifier(n_jobs=2, random_state=0)
+
+# Train the Classifier to take the training features and learn how they relate
+# to the training y (the species)
+clf.fit(xTrain, yTrain)
+predictions = clf.predict(xTest)
+accuracy = clf.score(xTest, yTest)
 print(accuracy)
